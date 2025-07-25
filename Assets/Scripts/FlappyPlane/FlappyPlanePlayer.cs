@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlappyPlane_Player : MonoBehaviour
+public class FlappyPlanePlayer : MonoBehaviour
 {
     Animator animator = null;
     Rigidbody2D _rigidbody = null;
