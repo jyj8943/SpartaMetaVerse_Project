@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PortalControl : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PortalControl : MonoBehaviour
     public void InteractionWithPortal()
     {
         Debug.Log("포탈과 상호작용에 성공했습니다.");
+        SceneManager.LoadScene("FlappyPlane");
     }
     
     private void OnTriggerEnter2D(Collider2D other)
