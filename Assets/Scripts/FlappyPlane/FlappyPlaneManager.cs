@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,13 @@ public class FlappyPlaneManager : MonoBehaviour
         get { return uiManager; }
     }
 
+    private bool isPaused = true;
+    public bool IsPaused
+    {
+        get { return isPaused; }
+        set { isPaused = value; }
+    }
+
     private void Awake()
     {
         flappyPlaneManager = this;
@@ -28,6 +36,22 @@ public class FlappyPlaneManager : MonoBehaviour
     private void Start()
     {
         uiManager.UpdateScore(0);
+
+        if (isPaused)
+            Time.timeScale = 0f;
+    }
+
+    private void Update()
+    {
+        if (isPaused)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                isPaused = false;
+                Time.timeScale = 1f;
+                uiManager.TurnOffReadyText();
+            }
+        }
     }
 
     public void GameOver()

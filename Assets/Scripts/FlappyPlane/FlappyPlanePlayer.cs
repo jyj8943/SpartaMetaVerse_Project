@@ -47,7 +47,7 @@ public class FlappyPlanePlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
                     // 게임 재시작
-                    flappyPlaneManager.RestartGame();
+                    // flappyPlaneManager.RestartGame();
                 }
             }
             else
@@ -59,9 +59,12 @@ public class FlappyPlanePlayer : MonoBehaviour
         else
         {
             // 점프 (플랩) 입력 처리
-            if (Input.GetKeyDown(KeyCode.Space) ||Input.GetMouseButtonDown(0))
+            if (!flappyPlaneManager.IsPaused)
             {
-                isFlap = true;
+                if (Input.GetKeyDown(KeyCode.Space) ||Input.GetMouseButtonDown(0))
+                {
+                    isFlap = true;
+                }
             }
         }
     }
