@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FlappyPlanePlayer : MonoBehaviour
 {
+    private FlappyPlaneManager flappyPlaneManager = null;
+    
     Animator animator = null;
     Rigidbody2D _rigidbody = null;
 
@@ -17,6 +19,8 @@ public class FlappyPlanePlayer : MonoBehaviour
     
     private void Start()
     {
+        flappyPlaneManager = FlappyPlaneManager.Instance;
+        
 		// 애니메이터와 리지드바디를 컴포넌트에서 찾기
         animator = transform.GetComponentInChildren<Animator>();
         _rigidbody = transform.GetComponent<Rigidbody2D>();
@@ -43,6 +47,7 @@ public class FlappyPlanePlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
                     // 게임 재시작
+                    flappyPlaneManager.RestartGame();
                 }
             }
             else
@@ -91,12 +96,13 @@ public class FlappyPlanePlayer : MonoBehaviour
         if (godMode)
             return;
             
-	      if (isDead)
+        if (isDead)
             return;
 
         // 죽음 애니메이션 실행
         animator.SetInteger("IsDie", 1);
         isDead = true;
         deathCooldown = 1f;
+        flappyPlaneManager.GameOver();
     }
 }

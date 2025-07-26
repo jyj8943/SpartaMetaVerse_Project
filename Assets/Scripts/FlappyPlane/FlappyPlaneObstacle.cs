@@ -15,11 +15,11 @@ public class FlappyPlaneObstacle : MonoBehaviour
 
     public float widthPadding = 4f;
 
-    //private GameManager gameManager;
+    private FlappyPlaneManager flappyPlaneManager;
 
     private void Start()
     {
-        //gameManager = GameManager.Instance;
+        flappyPlaneManager = FlappyPlaneManager.Instance;
     }
 
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
@@ -43,7 +43,7 @@ public class FlappyPlaneObstacle : MonoBehaviour
         FlappyPlanePlayer player = collision.GetComponent<FlappyPlanePlayer>();
         if (player != null)
         {
-            //gameManager.AddScore(1);
+            flappyPlaneManager.AddScore(1);
         }
     }
 }
