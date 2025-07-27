@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class FlappyPlaneUIManager : MonoBehaviour
 {
     private FlappyPlaneManager flappyPlaneManager = null;
+    private ScoreManager scoreManager = null;
     
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI readyText;
@@ -17,6 +18,7 @@ public class FlappyPlaneUIManager : MonoBehaviour
     void Start()
     {
         flappyPlaneManager = FlappyPlaneManager.Instance;
+        scoreManager = ScoreManager.Instance;
         
         if (readyText == null)
             Debug.LogError("restart text is null");
@@ -50,6 +52,7 @@ public class FlappyPlaneUIManager : MonoBehaviour
 
     public void OnClickQuitButton()
     {
+        scoreManager.SaveFlappyPlaneScore(flappyPlaneManager.CurrentScore);
         SceneManager.LoadScene("MainScene");
     }
 

@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PortalControl : MonoBehaviour
 {
     [SerializeField] private GameObject interactionText;
+    [SerializeField] private GameObject bestScoreText;
 
     private PlayerControl _player;
 
@@ -27,6 +30,14 @@ public class PortalControl : MonoBehaviour
                 interactionText.SetActive(true);
             }
 
+            if (!bestScoreText.activeSelf && PlayerPrefs.GetInt("FlappyPlaneBestScore") != 0)
+            {
+                // FlappyPlane의 최고 점수를 텍스트에 반영하는 함수
+                ChangeBestScoreText();
+                
+                bestScoreText.SetActive(true);
+            }
+
             _player = other.gameObject.GetComponent<PlayerControl>();
             if (_player != null)
             {
@@ -45,6 +56,11 @@ public class PortalControl : MonoBehaviour
             {
                 interactionText.SetActive(false);
             }
+            
+            if (bestScoreText.activeSelf)
+            {
+                bestScoreText.SetActive(false);
+            }
 
             if (_player != null)
             {
@@ -52,5 +68,11 @@ public class PortalControl : MonoBehaviour
                 _player = null;
             }
         }
+    }
+
+    private void ChangeBestScoreText()
+    {
+        bestScoreText.GetComponent<TextMeshPro>().text =
+            "BestScore: " + PlayerPrefs.GetInt("FlappyPlaneBestScore").ToString();
     }
 }

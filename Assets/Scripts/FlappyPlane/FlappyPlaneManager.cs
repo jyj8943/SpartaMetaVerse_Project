@@ -14,6 +14,11 @@ public class FlappyPlaneManager : MonoBehaviour
 
     private int currentScore = 0;
 
+    public int CurrentScore
+    {
+        get { return currentScore; }
+    }
+
     private FlappyPlaneUIManager uiManager;
     public FlappyPlaneUIManager UIManager
     {
